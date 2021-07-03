@@ -1,13 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {Component} from 'react';
+import Customer from './components/customer';
+
+var customer = [{
+  id: 1,
+  image: 'https://placeimg.com/256/256/1',
+  name: '홍길동',
+  birthday: '970910',
+  gender: '남자'
+},
+{
+  id: 2,
+  image: 'https://placeimg.com/256/256/2',
+  name: '홍길동2',
+  birthday: '970920',
+  gender: '남자'
+},
+{
+  id: 3,
+  image: 'https://placeimg.com/256/256/3',
+  name: '홍길동3',
+  birthday: '970930',
+  gender: '남자'
+}
+
+]
 
 class App extends Component{
   render(){
     return(
-      <div className = "gray-background">
-        <img src={logo} lat = "logo"/>
-        <h2>Let's develop managemnet system!</h2>
+      <div>
+        {
+          customer.map(c => {
+            return (
+              <Customer
+                key = {c.id}
+                id= {c.id}
+                image={c.image}
+                name = {c.name}
+                birthday = {c.birthday}
+                gender = {c.gender}
+              />
+            );
+          })
+        }
       </div>
     )
   }
