@@ -16,7 +16,7 @@ class Customer extends React.Component{
     }
 }
 
-class CustomerProfile extends React.Component{
+/*class CustomerProfile extends React.Component{
     render(){
         return(
             <div>
@@ -36,6 +36,6 @@ class CustomerInfo extends React.Component{
             </div>
         )
     }
-}
+}*/
 
 export default Customer;

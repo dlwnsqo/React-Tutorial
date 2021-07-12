@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import React, {Component} from 'react';
 import Customer from './components/customer';
@@ -19,38 +19,32 @@ const styles = theme => ({
   table:{
     minWidth: 1000
   }
-})
+});
 
-var customer = [{
-  id: 1,
-  image: 'https://placeimg.com/128/128/1',
-  name: '홍길동',
-  birthday: '970910',
-  gender: '남자'
-},
-{
-  id: 2,
-  image: 'https://placeimg.com/128/128/2',
-  name: '홍길동2',
-  birthday: '970920',
-  gender: '남자'
-},
-{
-  id: 3,
-  image: 'https://placeimg.com/128/128/3',
-  name: '홍길동3',
-  birthday: '970930',
-  gender: '남자'
-}
-
-]
 
 class App extends Component{
+
+  state={
+    customers: ""
+  }
+
+  componentDidMount(){
+    this.callApi()
+    .then(res => this.setState({customers: res}))
+    .catch(err => console.log(err));
+  }
+
+  callApi = async() => {
+    const response = await fetch('/api/customers');
+    const body = await response.json();
+    return body;
+  }
+
   render(){
     const {classes}=this.props;
     return(
-      <Paper class={classes.root}>
-        <Table class={classes.table}>
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell>번호</TableCell>
@@ -63,7 +57,8 @@ class App extends Component{
 
           <TableBody>
           {
-            customer.map(c => {
+            this.state.customers ? 
+            this.state.customers.map(c => {
               return (
                 <Customer
                   key = {c.id}
@@ -74,7 +69,7 @@ class App extends Component{
                   gender = {c.gender}
                />
               );
-           })
+           }) : ""
           }
           </TableBody>
         </Table>
