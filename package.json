@@ -8,6 +8,7 @@
     },
     "private": true,
     "dependencies": {
+        "@material-ui/icons": "^4.11.2",
         "body-parser": "^1.18.3",
         "express": "^4.17.1",
         "http-proxy-middleware": "^2.0.1",
